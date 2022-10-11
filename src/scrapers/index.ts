@@ -91,6 +91,14 @@ export const Mangadex5 = MangadexInstance;
 import GuyaInstance from "./guya";
 export const Guya = GuyaInstance;
 
+// Import Lectortmo
+import LectortmoInstance from "./lectortmo";
+export const Lectortmo = LectortmoInstance;
+
+// Import olympus
+import OlympusInstance from "./olympus";
+export const Olympus = OlympusInstance;
+
 export const scrapers = {
 	Mangasee,
 	Mangadex5,
@@ -101,4 +109,6 @@ export const scrapers = {
 	nhentai,
 	nhentainet,
 	Guya,
+	Lectortmo,
+	Olympus,
 };

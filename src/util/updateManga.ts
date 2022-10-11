@@ -124,7 +124,7 @@ async function addInfo(data: ScraperResponse) {
 	if (data.success) {
 		// This still works thanks to references
 		// Add progress to each chapter
-		const chapterPromises = data.data.chapters.map(async (ch) => {
+		const chapterPromises = data.data.chapters?.map(async (ch) => {
 			ch.progress = await getMangaProgress(
 				data.provider,
 				data.constant.slug,
@@ -147,7 +147,7 @@ async function addInfo(data: ScraperResponse) {
 		}
 
 		// Clean description paragraphs
-		data.constant.descriptionParagraphs = data.constant.descriptionParagraphs.map(
+		data.constant.descriptionParagraphs = data.constant.descriptionParagraphs?.map(
 			(s) =>
 				Entities.decode(parser.parseString(s)) // Basic HTML entities and bbcode parser
 					.replace(/&rsquo;/g, "'") // Weird HTML entities
@@ -156,7 +156,7 @@ async function addInfo(data: ScraperResponse) {
 
 		// Add a boolean to indicate if there is more than one chapter or not
 		const seasonSet = new Set(
-			data.data.chapters.map((c) => c.season.toString())
+			data.data.chapters?.map((c) => c.season.toString())
 		);
 		const chapters = Array.from(seasonSet);
 		data.data.hasSeasons = chapters.length > 1;
@@ -167,7 +167,7 @@ async function addInfo(data: ScraperResponse) {
 				data.constant.nsfw = true;
 			}
 		}
-		if (data.constant.descriptionParagraphs.join("\n").includes("sex")) {
+		if (data.constant.descriptionParagraphs?.join("\n").includes("sex")) {
 			data.constant.nsfw = true;
 		}
 
